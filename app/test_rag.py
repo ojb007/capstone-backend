@@ -1,3 +1,4 @@
+import sys
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFLoader
@@ -8,8 +9,10 @@ embeddings = HuggingFaceBgeEmbeddings(
     model_name="BAAI/bge-small-en-v1.5"
 )
 
-# 2. PDF 로드
-loader = PyPDFLoader("data/sample.pdf")
+# 2. PDF 로드 (경로를 인자로 받음, 없으면 기본값 사용)
+pdf_path = sys.argv[1] if len(sys.argv) > 1 else "data/sample.pdf"
+print(f"PDF 경로: {pdf_path}")
+loader = PyPDFLoader(pdf_path)
 pages = loader.load()
 
 # 3. 텍스트 분할 (너무 길면 잘라야 해요)
