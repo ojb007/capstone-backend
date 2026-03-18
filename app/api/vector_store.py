@@ -31,8 +31,8 @@ if __name__ == "__main__":
     import sys
     import os
     from langchain_community.document_loaders import TextLoader, DirectoryLoader
-    from app.services.pdf_loader import load_pdf
-    from app.services.text_splitter import split_documents
+    from app.api.pdf_loader import load_pdf
+    from app.api.text_splitter import split_documents
 
     path = sys.argv[1] if len(sys.argv) > 1 else "data/sample.pdf"
 

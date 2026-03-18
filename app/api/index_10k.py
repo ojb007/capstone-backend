@@ -6,7 +6,7 @@ import os
 from langchain_community.document_loaders import TextLoader
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
-from app.services.text_splitter import split_documents
+from app.api.text_splitter import split_documents
 
 TXT_DIR = "data/raw/10k"
 INDEX_PATH = "faiss_index"

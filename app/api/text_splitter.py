@@ -21,7 +21,7 @@ def split_documents(pages: list) -> list:
 
 if __name__ == "__main__":
     import sys
-    from app.services.pdf_loader import load_pdf
+    from app.api.pdf_loader import load_pdf
 
     path = sys.argv[1] if len(sys.argv) > 1 else "data/sample.pdf"
     pages = load_pdf(path)

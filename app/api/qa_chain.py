@@ -1,6 +1,6 @@
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
-from app.services.vector_store import load_vectorstore
+from app.api.vector_store import load_vectorstore
 
 
 def build_qa_chain(index_path: str = "faiss_index") -> RetrievalQA:
