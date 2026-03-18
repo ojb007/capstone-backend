@@ -29,13 +29,21 @@ def load_vectorstore(save_path: str = "faiss_index") -> FAISS:
 
 if __name__ == "__main__":
     import sys
+    import os
+    from langchain_community.document_loaders import TextLoader, DirectoryLoader
     from app.services.pdf_loader import load_pdf
     from app.services.text_splitter import split_documents
 
     path = sys.argv[1] if len(sys.argv) > 1 else "data/sample.pdf"
 
-    print("1. PDF 로드 중...")
-    pages = load_pdf(path)
+    print("1. 파일 로드 중...")
+    if os.path.isdir(path):
+        loader = DirectoryLoader(path, glob="**/*.txt", loader_cls=TextLoader,
+                                 loader_kwargs={"encoding": "utf-8"})
+        pages = loader.load()
+        print(f"   {len(pages)}개 파일 로드 완료")
+    else:
+        pages = load_pdf(path)
 
     print("2. 청크 분할 중...")
     chunks = split_documents(pages)
